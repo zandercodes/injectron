@@ -1,4 +1,38 @@
-# Injectron another way to inject Electron Apps
+<p align="center">
+  <img src="assets/logo.svg" alt="Injectron Logo" width="200" height="200" />
+</p>
+
+<p align="center">
+Injectron another way to inject Electron Apps
+</br>
+</br>
+</p>
+
+<div align="center">
+<strong>
+<samp>
+
+[![GitHub](https://img.shields.io/github/license/zandercodes/injectron)](LICENSE)
+[![Go Report Card](https://goreportcard.com/badge/github.com/zandercodes/injectron)](https://goreportcard.com/report/github.com/zandercodes/injectron)
+[![Go Docs](https://pkg.go.dev/badge/github.com/zandercodes/injectron)](https://pkg.go.dev/github.com/zandercodes/injectron)
+[![GitHub contributors](https://img.shields.io/github/contributors/zandercodes/injectron?color=green)](https://github.com/zandercodes/injectron/graphs/contributors)
+![GitHub last commit](https://img.shields.io/github/last-commit/zandercodes/injectron)
+[![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/zandercodes/injectron)](https://go.dev/)
+[![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/zandercodes/injectron?label=version)](https://github.com/zandercodes/injectron/releases)
+
+</samp>
+</strong>
+</div>
+
+## Table of Contents
+- [Work in progress](#work-in-progress)
+- [What is Injectron?](#what-is-injectron)
+- [How to use?](#how-to-use)
+- [How to install?](#how-to-install)
+- [How to build?](#how-to-build)
+- [How to contribute?](#how-to-contribute)
+- [How to donate?](#how-to-donate)
+- [License](#license)
 
 ## Work in progress
 The project is still in development.  
@@ -31,7 +65,7 @@ You can contribute to Injectron by creating a pull request. You can also contrib
 
 ## How to donate?
 You can donate at Ko-fi or you can also donate via Bitcoin.  
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/)  
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/G2G6M6UL4)  
 Bitcoin: `bc1qar5tlrhq7zmj5xdyc73jtzwpj20vx4x2yhhdfc`
 
 ## License
