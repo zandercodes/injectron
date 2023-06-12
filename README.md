@@ -16,7 +16,7 @@ Injectron another way to inject Electron Apps
 [![Go Report Card](https://goreportcard.com/badge/github.com/zandercodes/injectron)](https://goreportcard.com/report/github.com/zandercodes/injectron)
 [![Go Docs](https://pkg.go.dev/badge/github.com/zandercodes/injectron)](https://pkg.go.dev/github.com/zandercodes/injectron)
 [![GitHub contributors](https://img.shields.io/github/contributors/zandercodes/injectron?color=green)](https://github.com/zandercodes/injectron/graphs/contributors)
-![GitHub last commit](https://img.shields.io/github/last-commit/zandercodes/injectron)
+[![GitHub last commit](https://img.shields.io/github/last-commit/zandercodes/injectron)](https://github.com/zandercodes/injectron/commits)
 [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/zandercodes/injectron)](https://go.dev/)
 [![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/zandercodes/injectron?label=version)](https://github.com/zandercodes/injectron/releases)
 

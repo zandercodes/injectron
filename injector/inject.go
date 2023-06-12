@@ -1,32 +1,76 @@
 package injector
 
-import "github.com/zandercodes/injectron/utils"
+import (
+	"encoding/json"
+	"log"
+	"time"
 
-// CreateInjector creates a new injector with the following fields set:
-func CreateInjector(executable string, jsFiles []string) *Injector {
-	freePort := utils.GetFreeRandomPort() // Get a free random port to use for debugging
+	"github.com/rgamba/evtwebsocket"
+)
 
-	// Return a new injector with the following fields set
-	return &Injector{
-		debugPort:           freePort,   // Set the debug port to the free random port
-		executable:          executable, // Set the executable to the executable passed in
-		scripts:             jsFiles,    // Set the scripts to the scripts passed in
-		waitingBeforeInject: 1000,       // Set the waiting time to 1000ms
-		killIfRunning:       false,      // Set kill if running to false
+// Inject is the main function that injects the scripts into the executable
+func (i *Injector) Inject() error {
+	if !i.checkExecutable() {
+		return ErrExecutableNotFound
 	}
+
+	if i.killIfRunning {
+		if err := i.killProcess(); err != nil {
+			return err
+		}
+	}
+
+	if err := i.waitingOfApp(); err != nil {
+		return err
+	}
+
+	time.Sleep(time.Duration(i.waitingBeforeInject) * time.Millisecond)
+
+	sockets, err := i.getSockets()
+	if err != nil {
+		return err
+	}
+
+	for _, socket := range sockets {
+		var script string
+		for _, s := range i.scripts {
+			script += s
+		}
+		if err := evalScript(socket, script); err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
 
-// SetCustomPort sets the debug port to the port passed in
-func (i *Injector) SetCustomPort(port int) {
-	i.debugPort = port // Set the debug port to the port passed in
-}
+func evalScript(socket string, script string) error {
+	c := evtwebsocket.Conn{}
+	err := c.Dial(socket, "")
 
-// SetWaitingTime sets the waiting time to the time passed in
-func (i *Injector) SetWaitingTime(waitingTime int) {
-	i.waitingBeforeInject = waitingTime // Set the waiting time to the time passed in
-}
+	var request map[string]interface{} = make(map[string]interface{})
+	request["id"] = 1
+	request["method"] = "Runtime.evaluate"
+	request["params"] = map[string]interface{}{
+		"expression":            script,
+		"objectGroup":           "inject",
+		"includeCommandLineAPI": true,
+		"silent":                true,
+		"userGesture":           true,
+		"awaitPromise":          true,
+	}
+	out, err := json.Marshal(request)
+	if err != nil {
+		return err
+	}
 
-// SetKillIfRunning sets the kill if running to the value passed in
-func (i *Injector) SetKillIfRunning(kill bool) {
-	i.killIfRunning = kill // Set the kill if running to the value passed in
+	msg := evtwebsocket.Msg{
+		Body: out,
+		Callback: func(b []byte, c *evtwebsocket.Conn) {
+			log.Println(string(b))
+		},
+	}
+
+	c.Send(msg)
+	return nil
 }

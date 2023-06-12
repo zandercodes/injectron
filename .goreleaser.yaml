@@ -10,9 +10,11 @@ builds:
   - env:
       - CGO_ENABLED=0
     goos:
-      # - linux
+      - linux
       - windows
       # - darwin
+    ldflags:
+      - -s -w -X github.com/zandercodes/injectron/cmd.version={{.Version}} -X github.com/zandercodes/injectron/cmd.commit={{.Commit}} -X github.com/zandercodes/injectron/cmd.date={{.Date}} -X github.com/zandercodes/injectron/cmd.builtBy=goreleaser
 
 archives:
   - format: tar.gz
